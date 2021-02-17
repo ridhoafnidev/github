@@ -26,8 +26,8 @@ Name
 Avatar
 Menggunakan Parcelable sebagai interface dari obyek data yang akan dikirimkan antar Activity.
 
-#Kotlin
-#Intent Parcelable
-#ListView
-#ViewBinding
+1. Kotlin
+2. Intent Parcelable
+3. ListView
+4. ViewBinding
 
