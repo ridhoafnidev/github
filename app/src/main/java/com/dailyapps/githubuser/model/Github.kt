@@ -1,4 +1,4 @@
-package com.dailyapps.githubuser
+package com.dailyapps.githubuser.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
@@ -7,7 +7,7 @@ import kotlinx.android.parcel.Parcelize
 data class Github(
     var username: String,
     var name: String,
-    var avatar: Int,
+    var avatar: String,
     var company: String,
     var location: String,
     var repository: String,

@@ -1,21 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Github</string>
-    <string name="name_github">Name Github</string>
+    <string name="name_github">Nama Github</string>
     <string name="lorem">lorem ipsum dolor sit amet</string>
-    <string name="followers">followers</string>
-    <string name="following">following</string>
+    <string name="followers">pengikut</string>
+    <string name="following">mengikuti</string>
     <string name="no_text">-</string>
-    <string name="company">Company</string>
-    <string name="location">Location</string>
+    <string name="company">Perusahaan</string>
+    <string name="location">Lokasi</string>
     <string name="repository">repositories</string>
-    <string name="image">Image</string>
+    <string name="image">Gambar</string>
     <string name="with_cardview">Card</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="search">Search</string>
-    <string name="setting">Setting</string>
-    <string name="search_hint">Search you want</string>
-    <string name="tab_following">FOLLOWING</string>
-    <string name="tab_follower">FOLLOWER</string>
+    <string name="search">Pencarian</string>
+    <string name="setting">Pengaturan</string>
+    <string name="search_hint">Cari sesuatu disini</string>
+    <string name="tab_following">MENGIKUTI</string>
+    <string name="tab_follower">PENGIKUT</string>
     <string-array name="data_username">
         <item>JakeWharton</item>
         <item>amitshekhariitbhu</item>
