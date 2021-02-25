@@ -1,16 +1,17 @@
 package com.dailyapps.githubuser.model
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Github(
-    var username: String,
-    var name: String,
-    var avatar: String,
-    var company: String,
-    var location: String,
-    var repository: String,
-    var follower: String,
-    var following: String,
+        var username: String?=null,
+        var name: String?=null,
+        var avatar: String?=null,
+        var company: String?=null,
+        var location: String?=null,
+        var repository: String?=null,
+        var followers: String?=null,
+        var following: String?=null,
+        var favorite: String?=null
 ): Parcelable

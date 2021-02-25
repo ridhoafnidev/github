@@ -1,8 +1,7 @@
 package com.dailyapps.githubuser
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.dailyapps.githubuser.adapter.SectionsPagerAdapter
+import androidx.appcompat.app.AppCompatActivity
 import com.dailyapps.githubuser.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

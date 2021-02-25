@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dailyapps.githubuser.BuildConfig
 import com.dailyapps.githubuser.model.Github
 import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
@@ -20,7 +21,7 @@ class FollowingViewModel : ViewModel() {
     fun setFollowing(username: String){
         val listLogin = ArrayList<Github>()
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", "token e46a7625f2c745480b94dc7b822fa3e2de6b534e")
+        client.addHeader("Authorization", "token ${BuildConfig.GITHUB_TOKEN}")
         client.addHeader("User-Agent", "request")
 
         val url = "https://api.github.com/users/$username/following"
@@ -44,8 +45,9 @@ class FollowingViewModel : ViewModel() {
                             location = "",
                             company = "",
                             repository = "",
-                            follower = "",
-                            following = ""
+                            followers = "",
+                            following = "",
+                            favorite = ""
                         )
                         listLogin.add(github)
                     }
@@ -76,9 +78,9 @@ class FollowingViewModel : ViewModel() {
         return listUser
     }
 
-    fun setDetailUserGithub(username: String){
+    fun setDetailUserGithub(username: String?){
         val client = AsyncHttpClient()
-        client.addHeader("Authorization", "token e46a7625f2c745480b94dc7b822fa3e2de6b534e")
+        client.addHeader("Authorization", "token ${BuildConfig.GITHUB_TOKEN}")
         client.addHeader("User-Agent", "request")
         val url = "https://api.github.com/users/$username"
         client.get(url, object : AsyncHttpResponseHandler() {
@@ -90,7 +92,7 @@ class FollowingViewModel : ViewModel() {
                 val result = String(responseBody)
                 try {
                     val jsonObject = JSONObject(result)
-                    val username: String = jsonObject.getString("login")
+                    val login: String = jsonObject.getString("login")
                     val name: String = jsonObject.getString("name")
                     val avatar: String = jsonObject.getString("avatar_url")
                     val company: String = jsonObject.getString("company")
@@ -98,16 +100,18 @@ class FollowingViewModel : ViewModel() {
                     val repository: String =  jsonObject.getString("public_repos")
                     val followers: String =  jsonObject.getString("followers")
                     val following: String =  jsonObject.getString("following")
+                    val favorite: String =  "0"
                     githubs.add(
                         Github(
-                            username,
+                            login,
                             name,
                             avatar,
                             company,
                             location,
                             repository,
                             followers,
-                            following
+                            following,
+                            favorite
                         )
                     )
                     listUserDetail.postValue(githubs)
@@ -128,6 +132,7 @@ class FollowingViewModel : ViewModel() {
                     404 -> "$statusCode : Not Found"
                     else -> "$statusCode : ${error.message}"
                 }
+                Log.d("Error", errorMessage)
             }
         })
     }

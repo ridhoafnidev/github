@@ -1,11 +1,11 @@
 package com.dailyapps.githubuser.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,14 +21,15 @@ class FollowerFragment : Fragment() {
     }
 
     private lateinit var adapter: GithubAdapter
-    private lateinit var binding: FragmentFollowerBinding
+    private var _binding: FragmentFollowerBinding? = null
+    private val binding get() = _binding!!
     private lateinit var followerViewModel: FollowerViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFollowerBinding.inflate(inflater, container, false)
+        _binding = FragmentFollowerBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
@@ -36,8 +37,8 @@ class FollowerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var bundle: Bundle? = Bundle();
-        bundle = this?.arguments
+        var bundle: Bundle?
+        bundle = this.arguments
 
         val username: String = bundle?.get(EXTRA_DATA).toString()
 
@@ -65,22 +66,20 @@ class FollowerFragment : Fragment() {
         })
     }
 
-    private fun getUserDetail(username: String) {
+    private fun getUserDetail(username: String?) {
+        binding.progressBar.visibility = View.VISIBLE
         followerViewModel.setDetailUserGithub(username)
         followerViewModel.getDetailUserGithub().observe(viewLifecycleOwner, Observer {
             if (it != null){
+                binding.progressBar.visibility = View.GONE
                 adapter.setData(it)
-                showLoading(false)
             }
         })
     }
 
-    private fun showLoading(state: Boolean) {
-        if (state){
-            binding.progressBar.visibility = View.VISIBLE
-        }else{
-            binding.progressBar.visibility = View.GONE
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

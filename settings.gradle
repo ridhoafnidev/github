@@ -1,2 +1,3 @@
+include ':consumenapp'
 include ':app'
 rootProject.name = "GithubUser"

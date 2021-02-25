@@ -8,7 +8,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.dailyapps.githubuser.databinding.ItemGithubBinding
 import com.dailyapps.githubuser.model.Github
 
-class GithubAdapter() : RecyclerView.Adapter<GithubAdapter.ListViewHolder>(){
+class GithubAdapter : RecyclerView.Adapter<GithubAdapter.ListViewHolder>(){
 
     private var onItemClickCallback: OnItemClickCallback?= null
     private val mData = ArrayList<Github>()
